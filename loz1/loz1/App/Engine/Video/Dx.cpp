@@ -180,6 +180,9 @@ bool D3D::OnInit(){
 	wcscpy(df.FaceName, _T("Times New Roman"));
 	D3DXCreateFontIndirect(g_Device, &df, &m_pFont);
 
+	//texturebase
+	m_pTextureBase = new TextureBase();
+
 	return true;
 }
 

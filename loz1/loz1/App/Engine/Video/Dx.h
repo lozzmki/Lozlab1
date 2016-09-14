@@ -1,11 +1,10 @@
 #ifndef DX_H
 #define DX_H
 
-#include <Windows.h>
+#include<d3d9.h>
+#include<d3dx9.h>
+#include"TextureBase\TextureBase.h"
 
-struct IDirect3DDevice9;
-struct IDirect3DVertexBuffer9;
-struct ID3DXFont;
 
 struct Vertex{
 	float _x, _y, _z;
@@ -31,11 +30,11 @@ public:
 	void OnDestroy();
 
 	IDirect3DDevice9* m_pDevice;
+	TextureBase* m_pTextureBase;
 
 	inline ID3DXFont* GetFont(){return m_pFont;}
-	inline bool IfSuccess(){return m_bIfSuccess;}
+
 protected:
-	bool m_bIfSuccess;
 
 	IDirect3DVertexBuffer9* m_pVertexBuffer;
 
@@ -44,6 +43,7 @@ protected:
 };
 
 #define g_Device g_d3d->m_pDevice
+#define g_TextureBase g_d3d->m_pTextureBase
 
 extern D3D* g_d3d;
 

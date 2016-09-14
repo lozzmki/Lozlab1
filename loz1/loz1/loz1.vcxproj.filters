@@ -26,10 +26,14 @@
     <ClInclude Include="Utilities\Common.h" />
     <ClInclude Include="App\Engine\Video\Dx.h" />
     <ClInclude Include="Utilities\Vector2D.h" />
+    <ClInclude Include="App\Engine\Video\Sprite\Sprite.h" />
+    <ClInclude Include="App\Engine\Video\TextureBase\TextureBase.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App\App.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="App\Engine\Video\Dx.cpp" />
+    <ClCompile Include="App\Engine\Video\Sprite\Sprite.cpp" />
+    <ClCompile Include="App\Engine\Video\TextureBase\TextureBase.cpp" />
   </ItemGroup>
 </Project>
