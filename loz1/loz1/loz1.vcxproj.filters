@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="App">
+      <UniqueIdentifier>{37a1b9d6-3798-4513-a0d1-9faea64af3a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App\Game">
+      <UniqueIdentifier>{c3697bd3-15bc-4264-b5cd-daade110e0d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App\Engine">
+      <UniqueIdentifier>{30deb14f-1c16-45a0-88d6-8f9f1ff2f198}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App\Engine\Audio">
+      <UniqueIdentifier>{c2cc2255-2794-4eec-8c3b-f07df700783d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App\Engine\Video">
+      <UniqueIdentifier>{f514de68-5757-4cd0-bb78-048fa3301b06}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="App\App.h" />
+    <ClInclude Include="Utilities\Common.h" />
+    <ClInclude Include="App\Engine\Video\Dx.h" />
+    <ClInclude Include="Utilities\Vector2D.h" />
+    <ClInclude Include="App\Engine\Video\Sprite\Sprite.h" />
+    <ClInclude Include="App\Engine\Video\TextureBase\TextureBase.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="App\App.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="App\Engine\Video\Dx.cpp" />
+    <ClCompile Include="App\Engine\Video\Sprite\Sprite.cpp" />
+    <ClCompile Include="App\Engine\Video\TextureBase\TextureBase.cpp" />
+  </ItemGroup>
+</Project>
