@@ -1,7 +1,7 @@
 #ifndef SPRITE_H
 #define SPRITE_H
 
-#include "..\..\..\..\Utilities\Vector2D.h"
+#include "..\..\..\Utilities\Vector2D.h"
 
 struct ID3DXSprite;
 struct IDirect3DTexture9;

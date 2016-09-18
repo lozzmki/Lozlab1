@@ -1,6 +1,9 @@
 #include"App.h"
-#include"..\Utilities\Common.h"
+#include"Utilities\Common.h"
 #include"Engine\Video\Dx.h"
+#include"Engine\ThirdParty\CEGUI\CEGUIHelper.h"
+#include"Engine\ThirdParty\LUA\LUAHelper.h"
+#include"Engine\Input\GameInput.h"
 
 App* g_App = 0;
 
@@ -42,6 +45,27 @@ void App::Initialize(){
 		::MessageBox(0, _T("D3D初始化失败"), 0, 0);
 		m_bExit = true;
 	}
+
+	g_GUI = new CEGUIHelper();
+
+	g_Input = new GameInput(m_hInstance, m_hWnd);
+
+	LUA::initLUA();
+	/*
+	CEFrame* frame= new CEFrame(0,"WindowsLook/FrameWindow", "testwindow", 
+								CEGUI::UVector2( CEGUI::UDim( 0.25f, 0.0f ), CEGUI::UDim( 0.25f, 0.0f ) ),
+								CEGUI::USize( CEGUI::UDim( 0.5f, 0.0f ), CEGUI::UDim( 0.5f, 0.0f ) )
+								);
+	CEPushButton* button= new CETestButton(frame->getWindow(), "WindowsLook/Button", "button",
+											CEGUI::UVector2( CEGUI::UDim( 0.25f, 0.0f ), CEGUI::UDim( 0.25f, 0.0f )),
+											CEGUI::USize( CEGUI::UDim( 0.5f, 0.0f ), CEGUI::UDim( 0.5f, 0.0f ) )
+											);
+	*/
+
+
+
+	//隐藏硬件鼠标
+	ShowCursor(false);
 }
 
 void App::MainProcess(){
@@ -67,12 +91,21 @@ void App::MainProcess(){
 				count = 0;
 			}
 
+			
 			//update here
+			g_Input->UpdateInput();
+			g_GUI->injectInput();
+			//逻辑写好后判断是否向逻辑发送输入
 
-			//test render
+			g_d3d->StartRender();
+			//test code
+			g_d3d->testrender(delta);
 
-			g_d3d->OnRender(delta);
+			g_GUI->renderGUI();
+			//testend
+
 			//在这加入其它渲染
+
 			g_d3d->EndAndPresent();
 
 			lastTime = currTime;

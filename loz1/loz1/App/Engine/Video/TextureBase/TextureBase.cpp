@@ -1,5 +1,5 @@
 #include"TextureBase.h"
-#include "..\..\..\..\Utilities\Common.h"
+#include "..\..\..\Utilities\Common.h"
 #include"..\Dx.h"
 
 TextureNode::TextureNode(){

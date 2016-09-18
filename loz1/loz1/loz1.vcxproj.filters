@@ -23,11 +23,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\App.h" />
-    <ClInclude Include="Utilities\Common.h" />
     <ClInclude Include="App\Engine\Video\Dx.h" />
-    <ClInclude Include="Utilities\Vector2D.h" />
     <ClInclude Include="App\Engine\Video\Sprite\Sprite.h" />
     <ClInclude Include="App\Engine\Video\TextureBase\TextureBase.h" />
+    <ClInclude Include="App\Engine\ThirdParty\CEGUI\CEGUIHelper.h" />
+    <ClInclude Include="App\Utilities\Common.h" />
+    <ClInclude Include="App\Utilities\Vector2D.h" />
+    <ClInclude Include="App\Engine\Input\GameInput.h" />
+    <ClInclude Include="App\Engine\ThirdParty\LUA\LUAHelper.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App\App.cpp" />
@@ -35,5 +38,8 @@
     <ClCompile Include="App\Engine\Video\Dx.cpp" />
     <ClCompile Include="App\Engine\Video\Sprite\Sprite.cpp" />
     <ClCompile Include="App\Engine\Video\TextureBase\TextureBase.cpp" />
+    <ClCompile Include="App\Engine\ThirdParty\CEGUI\CEGUIHelper.cpp" />
+    <ClCompile Include="App\Engine\Input\GameInput.cpp" />
+    <ClCompile Include="App\Engine\ThirdParty\LUA\LUAHelper.cpp" />
   </ItemGroup>
 </Project>

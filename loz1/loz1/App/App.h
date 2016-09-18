@@ -3,6 +3,9 @@
 
 #include <Windows.h>
 
+class CEGUIHelper;
+class GameInput;
+
 //应用程序主体，进行各种依赖项的初始化和程序循环
 class App{
 public:
@@ -24,6 +27,10 @@ protected:
 	HWND m_hWnd;
 
 	bool m_bExit;
+
+	GameInput* m_pInput;
+	//test
+	//CEGUIHelper* m_pGUI;
 };
 
 extern App* g_App;
