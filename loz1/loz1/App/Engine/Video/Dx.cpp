@@ -1,5 +1,5 @@
 #include "Dx.h"
-#include "..\..\..\Utilities\Common.h"
+#include "..\..\Utilities\Common.h"
 #include "..\..\App.h"
 #include<d3d9.h>
 #include<d3dx9.h>
@@ -187,24 +187,25 @@ bool D3D::OnInit(){
 }
 
 
-//test code
-void D3D::OnRender(float timeDelta){
+void D3D::StartRender(){
 	
 	if(g_Device){
 		g_Device->Clear(0,0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, 0x0000ff00, 1.0f, 0);
-
-
 		g_Device->BeginScene();
-
-
 		g_Device->SetFVF(Vertex::FVF);
-
-
 	}
 
 }
 
+
 void D3D::EndAndPresent(){
+
+	if(g_Device){
 		g_Device->EndScene();
 		g_Device->Present(0,0,0,0);//present backbuffer
+	}
+}
+
+void D3D::testrender(float timeDelta){
+
 }

@@ -25,9 +25,13 @@ public:
 	virtual ~D3D();
 
 	bool OnInit();
-	void OnRender(float timeDelta);
+	void StartRender();
 	void EndAndPresent();
 	void OnDestroy();
+
+	//testhere
+	void testrender(float timeDelta);
+	//testend
 
 	IDirect3DDevice9* m_pDevice;
 	TextureBase* m_pTextureBase;

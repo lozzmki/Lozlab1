@@ -20,6 +20,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v110</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <UseOfAtl>false</UseOfAtl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -39,8 +40,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>D:\Program Files %28x86%29\Microsoft DirectX SDK %28February 2010%29\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Program Files %28x86%29\Microsoft DirectX SDK %28February 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Program Files %28x86%29\Lua\5.1\include;E:\devkit\cegui-0.8.7\cegui-0.8.7\cegui\include;D:\Program Files %28x86%29\Microsoft DirectX SDK %28February 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Lua\5.1\lib;E:\devkit\cegui-0.8.7\cegui-0.8.7\lib;D:\Program Files %28x86%29\Microsoft DirectX SDK %28February 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -49,7 +50,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>winmm.lib;d3d9.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;winmm.lib;User32.lib;d2d1.lib;dinput8.lib;dxguid.lib;lua51.lib;lua5.1.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -67,14 +68,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="App\App.h" />
+    <ClInclude Include="App\Engine\Input\GameInput.h" />
+    <ClInclude Include="App\Engine\ThirdParty\CEGUI\CEGUIHelper.h" />
+    <ClInclude Include="App\Engine\ThirdParty\LUA\LUAHelper.h" />
     <ClInclude Include="App\Engine\Video\Dx.h" />
     <ClInclude Include="App\Engine\Video\Sprite\Sprite.h" />
     <ClInclude Include="App\Engine\Video\TextureBase\TextureBase.h" />
-    <ClInclude Include="Utilities\Common.h" />
-    <ClInclude Include="Utilities\Vector2D.h" />
+    <ClInclude Include="App\Utilities\Common.h" />
+    <ClInclude Include="App\Utilities\Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App\App.cpp" />
+    <ClCompile Include="App\Engine\Input\GameInput.cpp" />
+    <ClCompile Include="App\Engine\ThirdParty\CEGUI\CEGUIHelper.cpp" />
+    <ClCompile Include="App\Engine\ThirdParty\LUA\LUAHelper.cpp" />
     <ClCompile Include="App\Engine\Video\Dx.cpp" />
     <ClCompile Include="App\Engine\Video\Sprite\Sprite.cpp" />
     <ClCompile Include="App\Engine\Video\TextureBase\TextureBase.cpp" />

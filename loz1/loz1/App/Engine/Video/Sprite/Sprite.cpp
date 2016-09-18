@@ -1,6 +1,6 @@
 #include "Sprite.h"
 
-#include "..\..\..\..\Utilities\Common.h"
+#include "..\..\..\Utilities\Common.h"
 #include "..\Dx.h"
 #include"..\TextureBase\TextureBase.h"
 
