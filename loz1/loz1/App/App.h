@@ -28,7 +28,7 @@ protected:
 
 	bool m_bExit;
 
-	GameInput* m_pInput;
+	//GameInput* m_pInput;
 	//test
 	//CEGUIHelper* m_pGUI;
 };

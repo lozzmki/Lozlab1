@@ -33,6 +33,8 @@
     <ClInclude Include="App\Engine\ThirdParty\LUA\LUAHelper.h" />
     <ClInclude Include="App\Game\UI\GameConsole.h" />
     <ClInclude Include="App\Utilities\Transfers.h" />
+    <ClInclude Include="App\Game\Logic\BaseGameLogic.h" />
+    <ClInclude Include="App\Game\Game.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App\App.cpp" />
@@ -45,5 +47,7 @@
     <ClCompile Include="App\Engine\ThirdParty\LUA\LUAHelper.cpp" />
     <ClCompile Include="App\Game\UI\GameConsole.cpp" />
     <ClCompile Include="App\Utilities\Transfers.cpp" />
+    <ClCompile Include="App\Game\Logic\BaseGameLogic.cpp" />
+    <ClCompile Include="App\Game\Game.cpp" />
   </ItemGroup>
 </Project>
