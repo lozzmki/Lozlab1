@@ -74,7 +74,9 @@
     <ClInclude Include="App\Engine\Video\Dx.h" />
     <ClInclude Include="App\Engine\Video\Sprite\Sprite.h" />
     <ClInclude Include="App\Engine\Video\TextureBase\TextureBase.h" />
+    <ClInclude Include="App\Game\UI\GameConsole.h" />
     <ClInclude Include="App\Utilities\Common.h" />
+    <ClInclude Include="App\Utilities\Transfers.h" />
     <ClInclude Include="App\Utilities\Vector2D.h" />
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +87,8 @@
     <ClCompile Include="App\Engine\Video\Dx.cpp" />
     <ClCompile Include="App\Engine\Video\Sprite\Sprite.cpp" />
     <ClCompile Include="App\Engine\Video\TextureBase\TextureBase.cpp" />
+    <ClCompile Include="App\Game\UI\GameConsole.cpp" />
+    <ClCompile Include="App\Utilities\Transfers.cpp" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

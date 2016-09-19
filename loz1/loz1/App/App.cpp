@@ -4,6 +4,7 @@
 #include"Engine\ThirdParty\CEGUI\CEGUIHelper.h"
 #include"Engine\ThirdParty\LUA\LUAHelper.h"
 #include"Engine\Input\GameInput.h"
+#include"Game\UI\GameConsole.h"
 
 App* g_App = 0;
 
@@ -51,6 +52,8 @@ void App::Initialize(){
 	g_Input = new GameInput(m_hInstance, m_hWnd);
 
 	LUA::initLUA();
+
+	g_pConsole = new GameConsole();
 	/*
 	CEFrame* frame= new CEFrame(0,"WindowsLook/FrameWindow", "testwindow", 
 								CEGUI::UVector2( CEGUI::UDim( 0.25f, 0.0f ), CEGUI::UDim( 0.25f, 0.0f ) ),
@@ -94,7 +97,8 @@ void App::MainProcess(){
 			
 			//update here
 			g_Input->UpdateInput();
-			g_GUI->injectInput();
+			g_GUI->injectMouseInput();
+			//g_GUI->injectKeyInput();
 			//Âß¼­Ð´ºÃºóÅÐ¶ÏÊÇ·ñÏòÂß¼­·¢ËÍÊäÈë
 
 			g_d3d->StartRender();
@@ -120,29 +124,25 @@ void App::CleanUp(){
 
 LRESULT CALLBACK App::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam){
 
-	static bool b_lPressed = false;
-
 	switch(msg){
 	case WM_DESTROY:
 		::PostQuitMessage(0);
 		break;
 	case WM_LBUTTONDOWN:
-		if(!b_lPressed){
-			b_lPressed = true;
-
-		}
 		break;
 	case WM_LBUTTONUP:
-		b_lPressed = false;
 		break;
+
 	case WM_KEYDOWN:
+	case WM_KEYUP:
 		if(wParam == VK_ESCAPE){
 			::DestroyWindow(hwnd);
 		}
+		//g_GUI->injectKeyInput(msg,wParam);
 		break;
-	
 	case WM_CHAR:
-
+		//g_GUI->injectCharEvent(LOWORD(wParam));
+		g_GUI->injectCharEvent(CEGUI::utf32(wParam));
 	//case WM_IME_CHAR:
 
 		break;

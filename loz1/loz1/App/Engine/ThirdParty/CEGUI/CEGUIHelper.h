@@ -10,25 +10,47 @@
 #define DefaultUSize CEGUI::USize(CEGUI::UDim(0.1f, 0.0f), CEGUI::UDim(0.1f,0.0f))
 
 //封装CEGUI操作的类
+
 class CEGUIHelper{
 public:
 	CEGUIHelper();
 	virtual ~CEGUIHelper();
 
 	void renderGUI();
-	void injectInput();
+	void injectMouseInput();
+	void injectKeyInput();
+	void injectCharEvent(char);
 
 	inline CEGUI::WindowManager* getWndMgr(){return m_pWndMgr;}
 	inline CEGUI::Window* getRootWnd(){return m_pWnd;}
-
-	static CEGUI::FrameWindow* createFrameWindow(CEGUI::Window* parent,CEGUI::String style, CEGUI::String name, CEGUI::UVector2 pos=ZeroUVector,CEGUI::USize size=DefaultUSize);
-	static CEGUI::PushButton* createPushButton(CEGUI::Window* parent,CEGUI::String style, CEGUI::String name, CEGUI::UVector2 pos=ZeroUVector,CEGUI::USize size=DefaultUSize);
 
 protected:
 	CEGUI::Direct3D9Renderer* m_pRenderer;
 	CEGUI::WindowManager* m_pWndMgr;
 	CEGUI::Window* m_pWnd;
 };
+
+template<class T>
+T* createCEobject(CEGUI::Window* parent,CEGUI::String style, CEGUI::String name, CEGUI::UVector2 pos=ZeroUVector,CEGUI::USize size=DefaultUSize){
+	T* pObj = 0;
+
+	pObj = static_cast<T*>( g_GUI->getWndMgr()->createWindow(style, name) );
+
+	if(!pObj)return 0;
+	pObj->setPosition(pos);
+	pObj->setSize(size);
+	if(parent)
+		parent->addChild(pObj);
+	else
+		g_GUI->getRootWnd()->addChild(pObj);
+
+	return pObj;
+}
+
+#define CreateCEFrame(parent, style, name, pos, size) createCEobject<CEGUI::FrameWindow>(parent, style, name, pos, size)
+#define CreateCEPushButton(parent, style, name, pos, size) createCEobject<CEGUI::PushButton>(parent, style, name, pos, size)
+#define CreateCEEditbox(parent, style, name, pos, size) createCEobject<CEGUI::Editbox>(parent, style, name, pos, size)
+#define CreateCEMultiLineEditbox(parent, style, name, pos, size) createCEobject<CEGUI::MultiLineEditbox>(parent, style, name, pos, size)
 /*
 class CEFrame{
 public:

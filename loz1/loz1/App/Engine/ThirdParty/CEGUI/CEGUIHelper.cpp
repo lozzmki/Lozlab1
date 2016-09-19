@@ -88,7 +88,7 @@ void CEGUIHelper::renderGUI(){
 	CEGUI::System::getSingleton().renderAllGUIContexts();
 }
 
-void CEGUIHelper::injectInput(){
+void CEGUIHelper::injectMouseInput(){
 	CEGUI::GUIContext& context = CEGUI::System::getSingleton().getDefaultGUIContext();
 	
 	context.injectMousePosition(g_Input->m_MousePos.x, g_Input->m_MousePos.y);
@@ -98,40 +98,24 @@ void CEGUIHelper::injectInput(){
 		context.injectMouseButtonUp(CEGUI::MouseButton::LeftButton);
 
 }
+void CEGUIHelper::injectKeyInput(){
 
-CEGUI::FrameWindow* CEGUIHelper::createFrameWindow(CEGUI::Window* parent, CEGUI::String style, CEGUI::String name, CEGUI::UVector2 pos, CEGUI::USize size){
-	CEGUI::FrameWindow* pFrame = 0;
+	
+	
 
-	pFrame = static_cast<CEGUI::FrameWindow*> ( g_GUI->getWndMgr()->createWindow( style, name));
-
-	if(!pFrame)return 0;
-
-	pFrame->setPosition(pos);
-	pFrame->setSize(size);
-	if(parent)
-		parent->addChild(pFrame);
-	else
-		g_GUI->getRootWnd()->addChild(pFrame);
-
-	return pFrame;
+	//if(e==WM_KEYDOWN)
+	//	context.injectKeyDown((CEGUI::Key::Scan)key);
+	//else
+	//	context.injectKeyUp((CEGUI::Key::Scan)key);
 }
 
-CEGUI::PushButton* CEGUIHelper::createPushButton(CEGUI::Window* parent, CEGUI::String style, CEGUI::String name, CEGUI::UVector2 pos, CEGUI::USize size){
-	CEGUI::PushButton* pButton = 0;
+void CEGUIHelper::injectCharEvent(char c){
+	CEGUI::GUIContext& context = CEGUI::System::getSingleton().getDefaultGUIContext();
 
-	pButton = static_cast<CEGUI::PushButton*>( g_GUI->getWndMgr()->createWindow(style, name ));
-
-	if(!pButton)return 0;
-
-	pButton->setPosition(pos);
-	pButton->setSize(size);
-	if(parent)
-		parent->addChild(pButton);
-	else
-		g_GUI->getRootWnd()->addChild(pButton);
-
-	return pButton;
+	context.injectChar(c);
 }
+
+
 /*
 CEGUI::PushButton* CEGUIHelper::createPushButton(Vec2f scale, Vec2f offset){
 	CEGUI::PushButton* pButton = 0;

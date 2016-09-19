@@ -3,6 +3,8 @@
 #include "../../Utilities/Common.h"
 #include "../../App.h"
 
+#include"../ThirdParty/CEGUI/CEGUIHelper.h"
+
 GameInput* g_Input = 0;
 
 GameInput::GameInput(){}
@@ -23,11 +25,23 @@ GameInput::GameInput(HINSTANCE hInstance, HWND hWnd){
 		MSGBOX("blast");
 	}
 
-	
+	m_pKeyboard->SetDataFormat(&c_dfDIKeyboard);
 	m_pKeyboard->SetCooperativeLevel(hWnd, DISCL_NONEXCLUSIVE | DISCL_BACKGROUND );
 
 	
-	m_pKeyboard->SetDataFormat(&c_dfDIKeyboard);
+	
+	DIPROPDWORD inputProp;
+                    // the header
+                    inputProp.diph.dwSize       = sizeof(DIPROPDWORD);
+                    inputProp.diph.dwHeaderSize = sizeof(DIPROPHEADER);
+                    inputProp.diph.dwObj        = 0;
+                    inputProp.diph.dwHow        = DIPH_DEVICE;
+                    inputProp.dwData            = 16;
+
+                    if (SUCCEEDED(m_pKeyboard->SetProperty(DIPROP_BUFFERSIZE, &inputProp.diph)))
+                    {
+                        m_pKeyboard->Acquire();
+                    }
 
 	
 	FAILPROCESS(m_pKeyboard->Acquire()){
@@ -64,7 +78,7 @@ void GameInput::UpdateInput(){
 	}
 	
 	if(m_pKeyboard){
-
+		/*
 		memcpy(m_LastKeyboardState, m_KeyboardState, sizeof(BYTE)*256);
 		FAILPROCESS(m_pKeyboard->GetDeviceState(256, (LPVOID)&m_KeyboardState)){
 			//MSGBOX("UPDATE KEYBOARD FAILED");
@@ -74,7 +88,49 @@ void GameInput::UpdateInput(){
 			}
 		}
 
+
+		//testcode
+		if(m_KeyboardState[DIK_ESCAPE]&0x80){
+			::DestroyWindow(g_App->GetWnd());
+		}
+
+		*/
+		DIDEVICEOBJECTDATA devDat;
+		DWORD itemCount = 1;
+
+		CEGUI::GUIContext& context = CEGUI::System::getSingleton().getDefaultGUIContext();
+
+		HRESULT hr = m_pKeyboard->GetDeviceData(sizeof(DIDEVICEOBJECTDATA), &devDat, &itemCount, 0);
+
+		if(SUCCEEDED(hr)){
+			if (itemCount > 0)
+			{
+				if (LOBYTE(devDat.dwData) & 0x80)
+				{
+					context.injectKeyDown((CEGUI::Key::Scan)devDat.dwOfs);
+					//MSGBOX("s");
+				}
+				else
+				{
+					context.injectKeyUp((CEGUI::Key::Scan)devDat.dwOfs);
+				}
+
+			}
+		}
+		else
+		{
+			// try to re-acquire device if that was the cause of the error.
+			if ((hr == DIERR_NOTACQUIRED) || (hr == DIERR_INPUTLOST))
+			{
+				//MSGBOX("fail");
+				g_Input->m_pKeyboard->Acquire();
+			}
+
+		}
+
+
 	}
+	
 	
 }
 

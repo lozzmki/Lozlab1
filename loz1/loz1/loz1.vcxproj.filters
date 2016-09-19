@@ -31,6 +31,8 @@
     <ClInclude Include="App\Utilities\Vector2D.h" />
     <ClInclude Include="App\Engine\Input\GameInput.h" />
     <ClInclude Include="App\Engine\ThirdParty\LUA\LUAHelper.h" />
+    <ClInclude Include="App\Game\UI\GameConsole.h" />
+    <ClInclude Include="App\Utilities\Transfers.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App\App.cpp" />
@@ -41,5 +43,7 @@
     <ClCompile Include="App\Engine\ThirdParty\CEGUI\CEGUIHelper.cpp" />
     <ClCompile Include="App\Engine\Input\GameInput.cpp" />
     <ClCompile Include="App\Engine\ThirdParty\LUA\LUAHelper.cpp" />
+    <ClCompile Include="App\Game\UI\GameConsole.cpp" />
+    <ClCompile Include="App\Utilities\Transfers.cpp" />
   </ItemGroup>
 </Project>
