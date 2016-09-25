@@ -35,6 +35,11 @@
     <ClInclude Include="App\Utilities\Transfers.h" />
     <ClInclude Include="App\Game\Logic\BaseGameLogic.h" />
     <ClInclude Include="App\Game\Game.h" />
+    <ClInclude Include="App\Game\Logic\LogicGear.h" />
+    <ClInclude Include="App\Game\Interfaces.h" />
+    <ClInclude Include="App\Game\View\ViewGear.h" />
+    <ClInclude Include="App\Game\Logic\GameEntity.h" />
+    <ClInclude Include="App\Game\Logic\Scene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App\App.cpp" />
@@ -49,5 +54,9 @@
     <ClCompile Include="App\Utilities\Transfers.cpp" />
     <ClCompile Include="App\Game\Logic\BaseGameLogic.cpp" />
     <ClCompile Include="App\Game\Game.cpp" />
+    <ClCompile Include="App\Game\Logic\LogicGear.cpp" />
+    <ClCompile Include="App\Game\Logic\GameEntity.cpp" />
+    <ClCompile Include="App\Game\View\ViewGear.cpp" />
+    <ClCompile Include="App\Game\Logic\Scene.cpp" />
   </ItemGroup>
 </Project>

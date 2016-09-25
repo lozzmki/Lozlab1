@@ -2,6 +2,8 @@
 #include "..\..\..\Utilities\Common.h"
 #include"..\Dx.h"
 
+TextureBase* g_TexBase = 0;
+
 TextureNode::TextureNode(){
 		_texture=0;
 		::ZeroMemory(&_info,sizeof(_info));

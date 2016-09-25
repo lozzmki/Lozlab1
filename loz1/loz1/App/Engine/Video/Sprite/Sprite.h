@@ -13,30 +13,34 @@ public:
 	Sprite();
 	virtual ~Sprite();
 
-	void Render();
-	inline void SetTexture(IDirect3DTexture9* _tex){
+	void render();
+	inline void setTexture(IDirect3DTexture9* _tex){
 		m_pTexture = _tex;
 	}
-	void SetTexture(TextureNode node);
-	inline void SetPos(int x, int y){
-		m_pos = Vec2i(x,y);
+	void setTexture(TextureNode node);
+	inline void setPos(double x, double y){
+		m_pos = Vec2d(x,y);
 	}
-	inline void SetPos(Vec2i v){
+	inline void setPos(Vec2d v){
 		m_pos = v;
 	}
-	inline void SetSize(int x, int y){
-		m_size = Vec2i(x,y);
+	inline void setScale(double x, double y){
+		m_scale = Vec2d(x,y);
 	}
-	inline void SetSize(Vec2i v){
-		m_size = v;
+	inline void setScale(Vec2d v){
+		m_scale = v;
+	}
+	inline void setRotate(double angle){
+		m_rotation = angle;
 	}
 protected:
 
 	ID3DXSprite* m_pSprite;
 	IDirect3DTexture9* m_pTexture;
 
-	Vec2i m_pos;
-	Vec2i m_size, m_texSize;
+	Vec2d m_pos;
+	Vec2d m_scale, m_texSize;
+	double m_rotation;
 	//textures
 };
 

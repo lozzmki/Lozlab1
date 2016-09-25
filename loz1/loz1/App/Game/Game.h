@@ -9,7 +9,8 @@ public:
 	Game();
 	virtual ~Game();
 
-
+	void update(double deltaTime);
+	void render();
 
 protected:
 	GameObjectManager* m_pManager;

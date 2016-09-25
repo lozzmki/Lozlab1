@@ -29,6 +29,8 @@ protected:
 	TextureMap m_Texture;
 };
 
+extern TextureBase* g_TexBase;
+
 #define _TEX(t) (g_TexBase->GetTexture(t)._texture)
 #define _TEXINFO(t) (g_TexBase->GetTexture(t)._info)
 #define _TEXNODE(t) (g_TexBase->GetTexture(t))

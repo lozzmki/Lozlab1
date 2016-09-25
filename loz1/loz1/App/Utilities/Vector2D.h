@@ -73,7 +73,21 @@ public:
 		x=_x;y=_y;
 		return *this;
 	}
-
+	//使x,y均为正的向量
+	inline Vector2D<T> Positive(){
+		if(x<0) x=-x;
+		if(y<0) y=-y;
+		return *this;
+	}
+	inline Vector2D<T> ReverseX(){
+		return Vector2D<T>(-x,y);
+	}
+	inline Vector2D<T> ReverseY(){
+		return Vector2D<T>(x,-y);
+	}
+	inline Vector2D<T> Reverse(){
+		return Vector2D<T>(-x,-y);
+	}
 	T x,y;
 };
 
