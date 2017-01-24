@@ -40,6 +40,8 @@
     <ClInclude Include="App\Game\View\ViewGear.h" />
     <ClInclude Include="App\Game\Logic\GameEntity.h" />
     <ClInclude Include="App\Game\Logic\Scene.h" />
+    <ClInclude Include="App\Game\Events\Interfaces.h" />
+    <ClInclude Include="App\Game\Events\EventSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App\App.cpp" />
@@ -58,5 +60,6 @@
     <ClCompile Include="App\Game\Logic\GameEntity.cpp" />
     <ClCompile Include="App\Game\View\ViewGear.cpp" />
     <ClCompile Include="App\Game\Logic\Scene.cpp" />
+    <ClCompile Include="App\Game\Events\EventSystem.cpp" />
   </ItemGroup>
 </Project>

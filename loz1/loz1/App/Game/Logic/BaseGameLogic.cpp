@@ -60,7 +60,7 @@ void GameObjectManager::cleanUp(){
 
 	m_nNumber=0;
 }
-
+/*
 void GameObjectManager::buildTree(){
 	m_pTree->clear();
 
@@ -78,7 +78,9 @@ void GameObjectManager::buildTree(){
 		++it;
 	}
 }
+*/
 
+/*
 void GameObjectManager::checkCollision(){
 	IDcheckSet _set;
 	std::list<int> _list;
@@ -126,4 +128,10 @@ void GameObjectManager::checkCollision(){
 		}
 		++it;
 	}
+}*/
+
+void GameObjectManager::checkCollision(){
+
+	//两个list，一个entity一个projectile，对entity遍历，检测与其他entity和projectile的碰撞情况
+	//entity碰撞需重新检测路径（标记之），entity和projectile碰撞发送事件
 }

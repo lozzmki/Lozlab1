@@ -34,7 +34,7 @@ public:
 	//testend
 
 	IDirect3DDevice9* m_pDevice;
-	TextureBase* m_pTextureBase;
+	//TextureBase* m_pTextureBase;
 
 	inline ID3DXFont* GetFont(){return m_pFont;}
 
@@ -47,7 +47,7 @@ protected:
 };
 
 #define g_Device g_d3d->m_pDevice
-#define g_TextureBase g_d3d->m_pTextureBase
+//#define g_TextureBase g_d3d->m_pTextureBase
 
 extern D3D* g_d3d;
 

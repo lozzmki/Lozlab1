@@ -7,6 +7,8 @@
 Sprite::Sprite(){
 	D3DXCreateSprite(g_Device, &m_pSprite);
 	m_pTexture=0;
+	m_scale=Vec2d(1.0,1.0);
+	m_rotation = 0.0;
 }
 Sprite::~Sprite(){
 	SAFE_DELETE(m_pSprite);
@@ -40,7 +42,9 @@ void Sprite::render(){
 		D3DXMatrixMultiply(&_mat, &_mat, &_matpos);
 
 		m_pSprite->SetTransform(&_mat);
-		m_pSprite->Draw(m_pTexture, 0, 0, 0, 0xffffffff);
+
+		D3DXVECTOR3 _center =  D3DXVECTOR3(m_texSize.x*0.5,m_texSize.y*0.5,0.0);
+		m_pSprite->Draw(m_pTexture, 0, &_center, 0, 0xffffffff);
 
 		m_pSprite->End();
 

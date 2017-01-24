@@ -2,6 +2,7 @@
 #define BASEGAMELOGIC_H
 
 #include<string>
+#include<list>
 #include<map>
 
 enum ObjectType{
@@ -42,7 +43,7 @@ protected:
 	bool m_bDestroy;
 };
 
-class QuadTree;
+
 //游戏单元管理器,唯一！
 class GameObjectManager{
 public:
@@ -78,10 +79,12 @@ public:
 	void cleanUp();
 
 protected:
-	void buildTree();
+	//void buildTree();
+
 
 	std::map<int, GameObject*> m_vObjects;
-	QuadTree* m_pTree;//碰撞检测使用
+	//QuadTree* m_pTree;//碰撞检测使用
+	std::list<GameObject*> m_vEntityList, m_vProjectileList;//碰撞检测使用
 	int m_nNumber;
 };
 

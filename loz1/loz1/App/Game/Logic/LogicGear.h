@@ -5,6 +5,7 @@
 #include"../Interfaces.h"
 #include"../../Utilities/Vector2D.h"
 #include"../../Utilities/Common.h"
+#include"../Events/Interfaces.h"
 #include<map>
 #include<string>
 #include<list>
@@ -87,38 +88,16 @@ public:
 	buffered_double d_criticalboost;
 };
 
-//碰撞盒,AABB和圆形
-class BoundBox : public IBoundBox{
+class FlagMap{
+
 public:
-	BoundBox(){d_type = BOUND_ROUND;d_ptPosition=d_vecSize=Vec2d(0.0,0.0);d_dRadius=0.0;}
-	BoundBox(Vec2d pos, Vec2d size):d_type(BOUND_SQUARE),d_ptPosition(pos),d_vecSize(size){}
-	BoundBox(Vec2d pos, double radius):d_type(BOUND_SQUARE),d_ptPosition(pos),d_dRadius(radius),d_vecSize(Vec2d(2*radius, 2*radius)){}
+	FlagMap(){d_map.clear();}
+	
+	void setValue(std::string key, bool val);
+	bool getValue(std::string key);
 
-	virtual bool checkCollide(IBoundBox*);
-	virtual inline void setPos(double x,double y){d_ptPosition=Vec2d(x,y);}
-	virtual inline void setSize(double x,double y){d_vecSize=Vec2d(x,y);}
-	virtual inline void setPos(Vec2d pos){d_ptPosition=pos;}
-	virtual inline void setSize(Vec2d size){d_vecSize=size;}
-	virtual inline void setRadius(double r){d_dRadius = r;}
-	virtual inline void setType(BoundType t){d_type = t;}
-
-	virtual inline Vec2d getPos(){return d_ptPosition;}
-	virtual inline Vec2d getSize(){return d_vecSize;}
-	virtual inline double getRadius(){return d_dRadius;}
-	virtual inline BoundType getType(){return d_type;}
-	virtual inline bool ifEnabled(){return d_bEnabled;}
-
-private:
-	//方形碰撞盒对角线交点，圆形碰撞盒圆心点
-	Vec2d d_ptPosition;
-	//方形碰撞盒大小
-	Vec2d d_vecSize;
-	//圆形碰撞盒半径
-	double d_dRadius;
-	//碰撞盒类型
-	BoundType d_type;
-	//是否生效
-	bool d_bEnabled;
+protected:
+	std::map<std::string,bool> d_map;
 };
 
 enum State{
@@ -131,12 +110,11 @@ enum State{
 };
 
 //角色移动控制
-class Motor{
+class Motor:public IEventListener{
 
 public:
-	Motor(){
-		_l=_r=_u=_d=false;
-	}
+	Motor();
+	virtual ~Motor();
 	enum Direction{
 		DIRECTION_RIGHT,
 		DIRECTION_UPRIGHT,
@@ -154,111 +132,30 @@ public:
 		MOTOR_LEFT,
 		MOTOR_DOWN
 	};
-	void setControl(Control, bool pressd);
+	
 	Direction getDirection();
+	virtual bool handleEvent(const IEvent& e);
 
 private:
 	bool _l, _r, _u, _d;//左右上下
+	void setControl(Control, bool pressd);
+	
 };
 
-
-class FlagMap{
-
+//碰撞体	
+class Collider{
 public:
-	FlagMap(){d_map.clear();}
-	
-	void setValue(std::string key, bool val);
-	bool getValue(std::string key);
+	Collider(double radius=0.0);
+	virtual ~Collider();
 
-protected:
-	std::map<std::string,bool> d_map;
-};
+	bool checkCollide(Vec2d& force, const Collider& target);
+	inline void updatePosition(Vec2d pos){m_vPos = pos;}
 
-#define QUAD_MAX_DEPTH 8
-
-//四叉树节点
-struct QuadNode{
-	//status
-	int _nDepth;
-	bool _bSplited;
-	//data
-	std::list<int> _lsIDlist;
-	Vec2d _center;//矩形区域中心点坐标
-	Vec2d _halfsize;//中心点到右上顶点的向量
-	//link
-	QuadNode* _pParent;
-	QuadNode* _pChild[4]; //0-3对应1-4象限
-
-	inline void split(){
-		_bSplited = true;
-		Vec2d _temphalf = _halfsize*0.5;
-		for(int i=0; i<4; i++){
-			_pChild[i] = new QuadNode(this);
-			_pChild[i]->_halfsize=_temphalf;
-		}
-		_pChild[0]->_center=_center+_temphalf;
-		_pChild[1]->_center=_center+_temphalf.ReverseX();
-		_pChild[2]->_center=_center+_temphalf.Reverse();
-		_pChild[3]->_center=_center+_temphalf.ReverseY();
-	}
-	enum Quadrant{
-		QUAD_FIRST,
-		QUAD_SECOND,
-		QUAD_THIRD,
-		QUAD_FOURTH,
-		QUAD_MULTIPLE=-1,
-	};
-	
-	void push(int,Vec2d,Vec2d);
-	void getList(std::list<int>&,Vec2d,Vec2d);
-
-	QuadNode(QuadNode* pParent=0){
-		if(_pParent)_nDepth = _pParent->_nDepth+1;
-		else _nDepth = 0;
-		_lsIDlist.clear();
-	}
-	~QuadNode(){
-		_lsIDlist.clear();
-		for(int i=0;i<4;i++)
-			SAFE_DELETE(_pChild[i]);
-	}
+	inline Vec2d getPos() const{return m_vPos;}
+	inline double getRadius() const{return m_dRadius;}
 private:
-	std::list<int> _blacklist;
-	Quadrant checkRect(Vec2d lt,Vec2d size);
-	void appendToList(std::list<int>&);
+	Vec2d m_vPos;
+	double m_dRadius;
 };
-
-//四叉树
-class QuadTree{
-	
-public:
-	QuadTree(){d_pRoot=new QuadNode();}
-	virtual ~QuadTree(){SAFE_DELETE(d_pRoot);}
-
-	//清空四叉树
-	void clear();
-	//插入一个新值
-	void push(int,Vec2d,Vec2d);
-	//获取可能的碰撞ID列表
-	void getList(std::list<int>&,Vec2d,Vec2d);
-
-private:
-	QuadNode* d_pRoot;
-};
-
-struct IDpair{
-	int _IDa, _IDb;
-	bool operator <(const IDpair& tar)const{
-		if(_IDa < tar._IDa)
-			return true;
-		else
-			if(_IDa == tar._IDa)
-				return _IDb < tar._IDb;
-
-		return false;
-	}
-	IDpair(int a=0,int b=0):_IDa(a),_IDb(b){}
-};
-typedef std::set<IDpair> IDcheckSet;
 
 #endif

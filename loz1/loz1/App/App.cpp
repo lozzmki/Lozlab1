@@ -5,6 +5,7 @@
 #include"Engine\ThirdParty\LUA\LUAHelper.h"
 #include"Engine\Input\GameInput.h"
 #include"Game\UI\GameConsole.h"
+#include"Game\Events\EventSystem.h"
 
 App* g_App = 0;
 
@@ -123,7 +124,7 @@ void App::CleanUp(){
 }
 
 LRESULT CALLBACK App::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam){
-
+	IEvent e;
 	switch(msg){
 	case WM_DESTROY:
 		::PostQuitMessage(0);
@@ -134,6 +135,11 @@ LRESULT CALLBACK App::WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		break;
 
 	case WM_KEYDOWN:
+		
+		e._type = EventType::EVENT_TYPE_KEYDOWN;
+		e._arg1 = wParam;
+		EventDispatcher::getSingleton()->fireEvent(e);
+
 	case WM_KEYUP:
 		if(wParam == VK_ESCAPE){
 			::DestroyWindow(hwnd);

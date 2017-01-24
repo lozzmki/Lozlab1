@@ -56,9 +56,9 @@ CEGUIHelper::CEGUIHelper(){
 	CEGUI::SchemeManager::getSingleton().createFromFile( "TaharezLook.scheme" );
 	CEGUI::SchemeManager::getSingleton().createFromFile( "WindowsLook.scheme" );
 	CEGUI::FontManager::getSingleton().createFromFile( "DejaVuSans-10.font" );
-
+	CEGUI::FontManager::getSingleton().createFromFile( "Jura-10.font" );
 	//设置默认字体和鼠标
-	CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultFont( "DejaVuSans-10" );
+	CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultFont( "Jura-10" );
 	CEGUI::System::getSingleton().getDefaultGUIContext().getMouseCursor().setDefaultImage( "TaharezLook/MouseArrow" );
 	//默认tooltip(?)
 	CEGUI::System::getSingleton().getDefaultGUIContext().setDefaultTooltipType( "TaharezLook/Tooltip" );

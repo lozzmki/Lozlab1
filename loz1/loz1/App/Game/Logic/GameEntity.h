@@ -44,13 +44,10 @@ public:
 	virtual void update(double deltaTime);
 	virtual void render();
 
-	inline BoundBox& getBoundBox(){return m_bound;}
-
 	//Triggers
 	virtual void onCollide(GameMsg&){}
 
 protected:
-	BoundBox m_bound;
 	Renderable m_renderable;
 	//碰撞盒在旋转角度为0时的位置偏移量
 	Vec2d m_vecBoundOffset;

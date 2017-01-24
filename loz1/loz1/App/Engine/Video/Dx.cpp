@@ -3,6 +3,7 @@
 #include "..\..\App.h"
 #include<d3d9.h>
 #include<d3dx9.h>
+#include"Sprite\Sprite.h"
 
 D3D* g_d3d=0;
 
@@ -181,7 +182,8 @@ bool D3D::OnInit(){
 	D3DXCreateFontIndirect(g_Device, &df, &m_pFont);
 
 	//texturebase
-	m_pTextureBase = new TextureBase();
+	g_TexBase = new TextureBase();
+	g_TexBase->PreloadTexture("test",L"..\\datafiles\\1-1.png");
 
 	return true;
 }
@@ -190,7 +192,7 @@ bool D3D::OnInit(){
 void D3D::StartRender(){
 	
 	if(g_Device){
-		g_Device->Clear(0,0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, 0x0000ff00, 1.0f, 0);
+		g_Device->Clear(0,0, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, 0x00000000, 1.0f, 0);
 		g_Device->BeginScene();
 		g_Device->SetFVF(Vertex::FVF);
 	}
@@ -208,4 +210,21 @@ void D3D::EndAndPresent(){
 
 void D3D::testrender(float timeDelta){
 
+	static Sprite* sprite = new Sprite();
+
+	sprite->setTexture(_TEXNODE("test"));
+
+	static double time = 0.0;
+
+	time+=timeDelta;
+	if(time>6.28)time-=6.28;
+
+	double x=100.0*cos(time)+200.0;
+	double y=100.0*sin(time)+200.0;
+
+	sprite->setPos(x, y);
+	sprite->setScale(sin(time), 1.0);
+	sprite->setRotate(time);
+
+	sprite->render();
 }

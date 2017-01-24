@@ -11,16 +11,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{CA0D257D-BCF9-478B-94CC-4A4A20FC7F16}</ProjectGuid>
-    <RootNamespace>loz1</RootNamespace>
+    <ProjectGuid>{04C3708B-F8E3-4484-B4A4-7ED37B6E0FD1}</ProjectGuid>
+    <RootNamespace>Project1</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v110</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
-    <UseOfAtl>false</UseOfAtl>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -39,10 +38,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Program Files %28x86%29\Lua\5.1\include;E:\devkit\cegui-0.8.7\cegui-0.8.7\cegui\include;D:\Program Files %28x86%29\Microsoft DirectX SDK %28February 2010%29\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Program Files %28x86%29\Lua\5.1\lib;E:\devkit\cegui-0.8.7\cegui-0.8.7\lib;D:\Program Files %28x86%29\Microsoft DirectX SDK %28February 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
+  <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -50,7 +46,6 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>d3d9.lib;d3dx9.lib;winmm.lib;User32.lib;d2d1.lib;dinput8.lib;dxguid.lib;lua51.lib;lua5.1.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -67,45 +62,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="App\App.h" />
-    <ClInclude Include="App\Engine\Input\GameInput.h" />
-    <ClInclude Include="App\Engine\ThirdParty\CEGUI\CEGUIHelper.h" />
-    <ClInclude Include="App\Engine\ThirdParty\LUA\LUAHelper.h" />
-    <ClInclude Include="App\Engine\Video\Dx.h" />
-    <ClInclude Include="App\Engine\Video\Sprite\Sprite.h" />
-    <ClInclude Include="App\Engine\Video\TextureBase\TextureBase.h" />
-    <ClInclude Include="App\Game\Events\EventSystem.h" />
-    <ClInclude Include="App\Game\Events\Interfaces.h" />
-    <ClInclude Include="App\Game\Logic\BaseGameLogic.h" />
-    <ClInclude Include="App\Game\Interfaces.h" />
-    <ClInclude Include="App\Game\Logic\LogicGear.h" />
-    <ClInclude Include="App\Game\Logic\Scene.h" />
-    <ClInclude Include="App\Game\UI\GameConsole.h" />
-    <ClInclude Include="App\Game\Game.h" />
-    <ClInclude Include="App\Game\View\ViewGear.h" />
-    <ClInclude Include="App\Utilities\Common.h" />
-    <ClInclude Include="App\Utilities\Transfers.h" />
-    <ClInclude Include="App\Utilities\Vector2D.h" />
-    <ClInclude Include="App\Game\Logic\GameEntity.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="App\App.cpp" />
-    <ClCompile Include="App\Engine\Input\GameInput.cpp" />
-    <ClCompile Include="App\Engine\ThirdParty\CEGUI\CEGUIHelper.cpp" />
-    <ClCompile Include="App\Engine\ThirdParty\LUA\LUAHelper.cpp" />
-    <ClCompile Include="App\Engine\Video\Dx.cpp" />
-    <ClCompile Include="App\Engine\Video\Sprite\Sprite.cpp" />
-    <ClCompile Include="App\Engine\Video\TextureBase\TextureBase.cpp" />
-    <ClCompile Include="App\Game\Events\EventSystem.cpp" />
-    <ClCompile Include="App\Game\Game.cpp" />
-    <ClCompile Include="App\Game\Logic\BaseGameLogic.cpp" />
-    <ClCompile Include="App\Game\Logic\GameEntity.cpp" />
-    <ClCompile Include="App\Game\Logic\LogicGear.cpp" />
-    <ClCompile Include="App\Game\Logic\Scene.cpp" />
-    <ClCompile Include="App\Game\UI\GameConsole.cpp" />
-    <ClCompile Include="App\Game\View\ViewGear.cpp" />
-    <ClCompile Include="App\Utilities\Transfers.cpp" />
-    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="a.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
